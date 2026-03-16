@@ -167,6 +167,139 @@ p {
 }
 
 /* ==========================================
+   BOTÓN HAMBURGUESA
+   ========================================== */
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 6px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    width: 28px;
+    height: 3px;
+    background-color: var(--color-celeste);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+}
+
+/* ==========================================
+   MENÚ MÓVIL
+   ========================================== */
+
+.menu-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    animation: fadeInOverlay 0.3s ease;
+}
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 280px;
+    background: linear-gradient(180deg, var(--color-blanco) 0%, var(--color-gris-claro) 100%);
+    box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+    z-index: 1000;
+    padding: 80px 0 30px 0;
+    animation: slideInMenu 0.3s ease;
+    overflow-y: auto;
+}
+
+.mobile-menu.open {
+    display: block;
+}
+
+.menu-overlay.active {
+    display: block;
+}
+
+.mobile-nav-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+}
+
+.mobile-nav-menu li {
+    border-bottom: 1px solid var(--color-gris-medio);
+}
+
+.mobile-nav-menu a {
+    display: block;
+    padding: 18px 25px;
+    color: var(--color-texto);
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.mobile-nav-menu a:hover {
+    background-color: var(--color-gris-claro);
+    color: var(--color-celeste);
+    padding-left: 30px;
+}
+
+.mobile-nav-menu li.admin-mobile {
+    border-bottom: none;
+    padding: 15px 15px;
+}
+
+.btn-admin-mobile {
+    width: 100%;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, var(--color-verde-agua) 0%, #5eb3b8 100%);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 10px rgba(94, 179, 184, 0.2);
+}
+
+.btn-admin-mobile:hover {
+    background: linear-gradient(135deg, #4a9ba3 0%, #4f9db6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(94, 179, 184, 0.3);
+}
+
+/* ==========================================
    BOTÓN ADMIN
    ========================================== */
 
@@ -195,6 +328,30 @@ p {
 
 .btn-admin:active {
     transform: translateY(0);
+}
+
+/* ==========================================
+   ANIMACIONES MENÚ
+   ========================================== */
+
+@keyframes fadeInOverlay {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideInMenu {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
 }
 
 /* ==========================================
@@ -774,38 +931,37 @@ p {
    ========================================== */
 
 @media (max-width: 768px) {
+    /* HEADER MOBILE */
+    .navbar-container {
+        justify-content: center;
+        position: relative;
+    }
+
+    .logo {
+        text-align: center;
+    }
+
+    .nav-right {
+        display: none !important;
+    }
+
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 0;
+    }
+
+    .menu-overlay {
+        display: block;
+    }
+
+    /* HERO */
     .hero-title {
         font-size: 2.2rem;
     }
 
     .hero-subtitle {
         font-size: 1.1rem;
-    }
-
-    .navbar-container {
-        flex-direction: column;
-        gap: 15px;
-        align-items: flex-start;
-    }
-
-    .nav-right {
-        width: 100%;
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .nav-menu {
-        gap: 15px;
-        font-size: 0.85rem;
-        flex-direction: column;
-        gap: 10px;
-        width: 100%;
-    }
-
-    .btn-admin {
-        width: 100%;
-        justify-content: center;
-        padding: 12px 16px;
     }
 
     h2 {
@@ -842,31 +998,44 @@ p {
         padding: 0 15px;
     }
 
-    .navbar-container {
-        flex-direction: column;
-        gap: 12px;
+    /* HEADER MOBILE */
+    .navbar {
+        padding: 12px 0;
     }
 
-    .nav-right {
-        width: 100%;
-        flex-direction: column;
-        gap: 12px;
+    .navbar-container {
+        justify-content: center;
+        position: relative;
     }
 
     .logo h1 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .logo .tagline {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
     }
 
-    .btn-admin {
+    .logo {
+        text-align: center;
+    }
+
+    .nav-right {
+        display: none !important;
+    }
+
+    .hamburger {
+        display: flex;
+        position: absolute;
+        right: 15px;
+    }
+
+    .mobile-menu {
         width: 100%;
-        padding: 10px 14px;
-        font-size: 0.8rem;
+        padding: 70px 0 20px 0;
     }
 
+    /* HERO */
     .hero {
         padding: 60px 0;
     }
@@ -914,9 +1083,10 @@ p {
         gap: 30px;
     }
 
-    .contacto-info h2,
-    h2 {
-        font-size: 1.5rem
+    .contacto-info h2 {
+        font-size: 1.5rem;
+    }
+
     .hero {
         padding: 60px 0;
     }
