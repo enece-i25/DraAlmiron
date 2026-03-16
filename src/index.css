@@ -118,10 +118,16 @@ p {
     padding: 15px 0;
 }
 
-.navbar .container {
+.navbar-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
 .logo {
@@ -158,6 +164,37 @@ p {
 
 .nav-menu a:hover {
     color: var(--color-celeste);
+}
+
+/* ==========================================
+   BOTÓN ADMIN
+   ========================================== */
+
+.btn-admin {
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--color-verde-agua) 0%, #5eb3b8 100%);
+    color: var(--color-blanco);
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: var(--transicion);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    box-shadow: 0 3px 10px rgba(94, 179, 184, 0.2);
+}
+
+.btn-admin:hover {
+    background: linear-gradient(135deg, #4a9ba3 0%, #4f9db6 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(94, 179, 184, 0.3);
+}
+
+.btn-admin:active {
+    transform: translateY(0);
 }
 
 /* ==========================================
@@ -745,11 +782,30 @@ p {
         font-size: 1.1rem;
     }
 
+    .navbar-container {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .nav-right {
+        width: 100%;
+        flex-direction: column;
+        gap: 15px;
+    }
+
     .nav-menu {
         gap: 15px;
         font-size: 0.85rem;
         flex-direction: column;
         gap: 10px;
+        width: 100%;
+    }
+
+    .btn-admin {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 16px;
     }
 
     h2 {
@@ -784,7 +840,34 @@ p {
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
-    } {
+    }
+
+    .navbar-container {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .nav-right {
+        width: 100%;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .logo .tagline {
+        font-size: 0.75rem;
+    }
+
+    .btn-admin {
+        width: 100%;
+        padding: 10px 14px;
+        font-size: 0.8rem;
+    }
+
+    .hero {
         padding: 60px 0;
     }
 

@@ -212,40 +212,13 @@ export default function App() {
       {/* Mostrar página normal si no está en admin */}
       {!showAdmin ? (
         <>
-          <Header abrirFormulario={() => {
-            const elemento = document.getElementById('contacto');
-            elemento?.scrollIntoView({ behavior: 'smooth' });
-          }} />
-
-          {/* Botón para acceder a admin (arriba a la derecha) */}
-          <button
-            onClick={() => setShowAdmin(true)}
-            style={{
-              position: 'fixed',
-              top: '20px',
-              right: '100px',
-              padding: '10px 15px',
-              backgroundColor: '#5eb3b8',
-              color: 'white',
-              border: 'none',
-              borderRadius: '6px',
-              cursor: 'pointer',
-              fontSize: '0.85rem',
-              fontWeight: '600',
-              zIndex: 998,
-              transition: 'all 0.3s'
+          <Header 
+            abrirFormulario={() => {
+              const elemento = document.getElementById('contacto');
+              elemento?.scrollIntoView({ behavior: 'smooth' });
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = '#4a95a0';
-              e.currentTarget.style.transform = 'scale(1.05)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = '#5eb3b8';
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-          >
-            🔐 Admin
-          </button>
+            onAdminClick={() => setShowAdmin(true)}
+          />
 
           {notification && (
             <Notification mensaje={notification.mensaje} tipo={notification.tipo} />
