@@ -186,6 +186,10 @@ p {
 .hero-content {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .hero-title {
@@ -216,6 +220,7 @@ p {
     transition: var(--transicion);
     font-size: 1rem;
     text-align: center;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -607,12 +612,24 @@ p {
 
 .formulario .btn {
     width: 100%;
+    display: block;
+    padding: 14px 30px;
     margin-top: 10px;
 }
 
 @media (max-width: 768px) {
     .contacto-wrapper {
         grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .contacto-info h2 {
+        text-align: center;
+    }
+
+    .contacto-info .btn {
+        width: auto;
+        max-width: 100%;
     }
 }
 
@@ -647,6 +664,11 @@ p {
 @media (max-width: 768px) {
     .faq-grid {
         grid-template-columns: 1fr;
+    }
+
+    .faq-item button {
+        padding: 16px;
+        font-size: 0.9rem;
     }
 }
 
@@ -762,6 +784,8 @@ p {
 @media (max-width: 480px) {
     .container {
         padding: 0 15px;
+    } {
+        padding: 60px 0;
     }
 
     .hero-title {
@@ -770,6 +794,12 @@ p {
 
     .hero-subtitle {
         font-size: 1rem;
+    }
+
+    .hero-content .btn {
+        padding: 12px 25px;
+        font-size: 0.95rem;
+        max-width: 280px;
     }
 
     h2 {
@@ -782,10 +812,28 @@ p {
         font-size: 0.95rem;
     }
 
+    .btn {
+        padding: 11px 24px;
+        font-size: 0.9rem;
+    }
+
+    .formulario .btn {
+        width: 100%;
+        padding: 12px 24px;
+        font-size: 0.95rem;
+    }
+
     section {
         padding: 30px 0;
     }
 
+    .contacto-wrapper {
+        gap: 30px;
+    }
+
+    .contacto-info h2,
+    h2 {
+        font-size: 1.5rem
     .hero {
         padding: 60px 0;
     }
