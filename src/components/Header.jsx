@@ -7,6 +7,29 @@ export default function Header({ abrirFormulario, onAdminClick }) {
     setMenuOpen(false);
   };
 
+  const handleNavClick = (e, targetId) => {
+    e.preventDefault();
+    handleMenuItemClick();
+    
+    // Obtener el elemento destino
+    const targetElement = document.querySelector(targetId);
+    if (!targetElement) return;
+
+    // Obtener la altura del navbar
+    const navbar = document.querySelector('.navbar');
+    const navbarHeight = navbar ? navbar.offsetHeight : 0;
+    
+    // Calcular la posición con offset
+    const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - navbarHeight - 20; // 20px extra para padding
+
+    // Scroll suave
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <header className="header">
       <nav className="navbar">
@@ -30,11 +53,11 @@ export default function Header({ abrirFormulario, onAdminClick }) {
           {/* Menú de navegación desktop */}
           <div className="nav-right">
             <ul className="nav-menu">
-              <li><a href="#hero">Inicio</a></li>
-              <li><a href="#servicios">Servicios</a></li>
-              <li><a href="#testimonios">Testimonios</a></li>
-              <li><a href="#contacto">Contacto</a></li>
-              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#hero" onClick={(e) => handleNavClick(e, '#hero')}>Inicio</a></li>
+              <li><a href="#servicios" onClick={(e) => handleNavClick(e, '#servicios')}>Servicios</a></li>
+              <li><a href="#testimonios" onClick={(e) => handleNavClick(e, '#testimonios')}>Testimonios</a></li>
+              <li><a href="#contacto" onClick={(e) => handleNavClick(e, '#contacto')}>Contacto</a></li>
+              <li><a href="#faq" onClick={(e) => handleNavClick(e, '#faq')}>FAQ</a></li>
             </ul>
             {onAdminClick && (
               <button 
@@ -61,11 +84,11 @@ export default function Header({ abrirFormulario, onAdminClick }) {
           {/* Menú lateral */}
           <div className={`mobile-menu ${menuOpen ? 'open' : ''}`}>
             <ul className="mobile-nav-menu">
-              <li><a href="#hero" onClick={handleMenuItemClick}>Inicio</a></li>
-              <li><a href="#servicios" onClick={handleMenuItemClick}>Servicios</a></li>
-              <li><a href="#testimonios" onClick={handleMenuItemClick}>Testimonios</a></li>
-              <li><a href="#contacto" onClick={handleMenuItemClick}>Contacto</a></li>
-              <li><a href="#faq" onClick={handleMenuItemClick}>FAQ</a></li>
+              <li><a href="#hero" onClick={(e) => handleNavClick(e, '#hero')}>Inicio</a></li>
+              <li><a href="#servicios" onClick={(e) => handleNavClick(e, '#servicios')}>Servicios</a></li>
+              <li><a href="#testimonios" onClick={(e) => handleNavClick(e, '#testimonios')}>Testimonios</a></li>
+              <li><a href="#contacto" onClick={(e) => handleNavClick(e, '#contacto')}>Contacto</a></li>
+              <li><a href="#faq" onClick={(e) => handleNavClick(e, '#faq')}>FAQ</a></li>
               {onAdminClick && (
                 <li className="admin-mobile">
                   <button 

@@ -1,3 +1,5 @@
+import whatsappIcon from '../assets/img/whatsapp.svg';
+
 export default function BotonWhatsApp() {
   const numeroWhatsApp = '+543794011820';
   
@@ -22,7 +24,6 @@ export default function BotonWhatsApp() {
         backgroundColor: '#25D366',
         color: 'white',
         border: 'none',
-        fontSize: '28px',
         cursor: 'pointer',
         boxShadow: '0 4px 12px rgba(37, 211, 102, 0.4)',
         display: 'flex',
@@ -30,7 +31,9 @@ export default function BotonWhatsApp() {
         justifyContent: 'center',
         zIndex: 999,
         transition: 'all 0.3s ease',
-        animation: 'pulse 2s infinite'
+        animation: 'pulse 2s infinite',
+        padding: 0,
+        overflow: 'hidden'
       }}
       onMouseEnter={(e) => {
         e.currentTarget.style.transform = 'scale(1.1)';
@@ -41,7 +44,15 @@ export default function BotonWhatsApp() {
         e.currentTarget.style.boxShadow = '0 4px 12px rgba(37, 211, 102, 0.4)';
       }}
     >
-      💬
+      <img 
+        src={whatsappIcon} 
+        alt="WhatsApp" 
+        style={{
+          width: '100%',
+          height: '100%',
+          objectFit: 'contain'
+        }}
+      />
     </button>
   );
 }

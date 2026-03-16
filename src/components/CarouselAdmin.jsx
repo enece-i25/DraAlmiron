@@ -67,9 +67,9 @@ export default function CarouselAdmin({ images = [] }) {
     <div style={{
       position: 'relative',
       width: '100%',
-      maxWidth: '800px',
-      margin: '0 auto',
-      borderRadius: '12px',
+      maxWidth: '100%',
+      margin: '0',
+      borderRadius: '10px',
       overflow: 'hidden',
       boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
     }}>

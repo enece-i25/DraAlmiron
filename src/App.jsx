@@ -8,6 +8,7 @@ import Beneficios from './components/Beneficios';
 import Servicios from './components/Servicios';
 import Galeria from './components/Galeria';
 import Testimonios from './components/Testimonios';
+import Noticias from './components/Noticias';
 import Contacto from './components/Contacto';
 import FAQ from './components/FAQ';
 import Legal from './components/Legal';
@@ -18,8 +19,38 @@ import AdminPanel from './components/AdminPanel';
 export default function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [showAdmin, setShowAdmin] = useState(false);
+  
+  // ============ GALERÍA ============
   const [galeryImages, setGaleryImages] = useState(() => {
     const saved = localStorage.getItem('galeria_images');
+    return saved ? JSON.parse(saved) : [];
+  });
+
+  // ============ TESTIMONIOS ============
+  const [testimoniosData, setTestimoniosData] = useState(() => {
+    const saved = localStorage.getItem('testimonios');
+    return saved ? JSON.parse(saved) : [
+      {
+        texto: "La Dra. Almirón me explicó cada paso del tratamiento y me hizo sentir segura en todo momento. Recomiendo su consultorio.",
+        autor: "Mariana G.",
+        rating: 5
+      },
+      {
+        texto: "Llevé a mi hijo a su primera consulta y la atención fue excelente. Nos manejaron su miedo perfecto.",
+        autor: "Pablo R.",
+        rating: 5
+      },
+      {
+        texto: "Me realicé una cirugía de implante y todo salió perfecto. El consultorio es moderno y la Dra. impecable.",
+        autor: "Lucía F.",
+        rating: 5
+      }
+    ];
+  });
+
+  // ============ NOTICIAS ============
+  const [noticiasData, setNoticiasData] = useState(() => {
+    const saved = localStorage.getItem('noticias');
     return saved ? JSON.parse(saved) : [];
   });
 
@@ -43,12 +74,21 @@ export default function App() {
     }
   }, []);
 
-  // Cargar imágenes cuando cambien
+  // Scroll hacia el inicio al cargar la página
   React.useEffect(() => {
-    const saved = localStorage.getItem('galeria_images');
-    if (saved) {
-      setGaleryImages(JSON.parse(saved));
-    }
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Cargar datos dinámicamente
+  React.useEffect(() => {
+    const savedGaleria = localStorage.getItem('galeria_images');
+    if (savedGaleria) setGaleryImages(JSON.parse(savedGaleria));
+    
+    const savedTestimonios = localStorage.getItem('testimonios');
+    if (savedTestimonios) setTestimoniosData(JSON.parse(savedTestimonios));
+    
+    const savedNoticias = localStorage.getItem('noticias');
+    if (savedNoticias) setNoticiasData(JSON.parse(savedNoticias));
   }, []);
 
   const handleInputChange = (e) => {
@@ -167,24 +207,6 @@ export default function App() {
     { titulo: "Estética Dental", descripcion: "Blanqueamientos, carillas y tratamientos para mejorar la apariencia de tu sonrisa. Resultados naturales y duraderos.", icono: "✨" }
   ];
 
-  const testimonios = [
-    {
-      texto: "La Dra. Almirón me explicó cada paso del tratamiento y me hizo sentir segura en todo momento. Recomiendo su consultorio por la calidez y el profesionalismo.",
-      autor: "Mariana G.",
-      rating: 5
-    },
-    {
-      texto: "Llevé a mi hijo a su primera consulta y la atención fue excelente. Supieron manejar su miedo y ahora va al dentista sin problemas.",
-      autor: "Pablo R.",
-      rating: 5
-    },
-    {
-      texto: "Me realicé una cirugía de implante y todo salió perfecto. El consultorio es moderno y la Dra. siempre estuvo atenta a mi recuperación.",
-      autor: "Lucía F.",
-      rating: 5
-    }
-  ];
-
   return (
     <div className="app">
       {/* Si no está autenticado pero presionó acceso admin, mostrar login */}
@@ -205,6 +227,12 @@ export default function App() {
           }}
           onImagesUpdate={(images) => {
             setGaleryImages(images);
+          }}
+          onTestimoniosUpdate={(testimonios) => {
+            setTestimoniosData(testimonios);
+          }}
+          onNoticiesUpdate={(noticias) => {
+            setNoticiasData(noticias);
           }}
         />
       ) : null}
@@ -239,7 +267,9 @@ export default function App() {
 
           <Galeria images={galeryImages} />
 
-          <Testimonios items={testimonios} />
+          <Testimonios items={testimoniosData.length > 0 ? testimoniosData : testimonios} />
+
+          <Noticias items={noticiasData} />
 
           <Contacto
             formData={formData}
