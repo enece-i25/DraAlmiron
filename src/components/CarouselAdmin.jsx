@@ -71,13 +71,15 @@ export default function CarouselAdmin({ images = [] }) {
       margin: '0',
       borderRadius: '10px',
       overflow: 'hidden',
-      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)'
+      boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
+      maxHeight: '550px',
+      height: '550px'
     }}>
       {/* Slide actual */}
       <div style={{
         position: 'relative',
         width: '100%',
-        paddingBottom: '66.67%', // Ratio 3:2
+        paddingBottom: '56.25%', // Ratio 16:9
         backgroundColor: '#e0e0e0',
         overflow: 'hidden'
       }}>
@@ -123,81 +125,20 @@ export default function CarouselAdmin({ images = [] }) {
           right: 0,
           background: 'linear-gradient(to top, rgba(0,0,0,0.7), transparent)',
           color: 'white',
-          padding: '30px 20px 20px',
-          fontSize: '1.3rem',
+          padding: '20px 20px 15px',
+          fontSize: '1.1rem',
           fontWeight: 'bold'
         }}>
           {displayImages[currentIndex].titulo}
         </div>
-
-        {/* Botones navegación */}
-        <button
-          onClick={goToPrevious}
-          style={{
-            position: 'absolute',
-            left: '20px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            border: 'none',
-            width: '50px',
-            height: '50px',
-            borderRadius: '50%',
-            cursor: 'pointer',
-            fontSize: '24px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'all 0.3s',
-            zIndex: 10
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-          }}
-        >
-          ◀
-        </button>
-
-        <button
-          onClick={goToNext}
-          style={{
-            position: 'absolute',
-            right: '20px',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            backgroundColor: 'rgba(255, 255, 255, 0.8)',
-            border: 'none',
-            width: '50px',
-            height: '50px',
-            borderRadius: '50%',
-            cursor: 'pointer',
-            fontSize: '24px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            transition: 'all 0.3s',
-            zIndex: 10
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 1)';
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
-          }}
-        >
-          ▶
-        </button>
       </div>
 
       {/* Indicadores */}
       <div style={{
         display: 'flex',
         justifyContent: 'center',
-        gap: '10px',
-        padding: '15px',
+        gap: '8px',
+        padding: '10px',
         backgroundColor: '#f5f5f5',
         flexWrap: 'wrap'
       }}>
@@ -206,9 +147,9 @@ export default function CarouselAdmin({ images = [] }) {
             key={index}
             onClick={() => goToSlide(index)}
             style={{
-              width: index === currentIndex ? '30px' : '12px',
-              height: '12px',
-              borderRadius: '6px',
+              width: index === currentIndex ? '25px' : '10px',
+              height: '10px',
+              borderRadius: '5px',
               backgroundColor: index === currentIndex ? '#4a9fd8' : '#ccc',
               border: 'none',
               cursor: 'pointer',
@@ -221,13 +162,13 @@ export default function CarouselAdmin({ images = [] }) {
       {/* Contador */}
       <div style={{
         position: 'absolute',
-        top: '15px',
-        right: '15px',
+        top: '12px',
+        right: '12px',
         backgroundColor: 'rgba(0, 0, 0, 0.6)',
         color: 'white',
-        padding: '8px 12px',
+        padding: '6px 10px',
         borderRadius: '20px',
-        fontSize: '0.9rem',
+        fontSize: '0.85rem',
         fontWeight: '600'
       }}>
         {currentIndex + 1} / {displayImages.length}

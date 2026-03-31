@@ -1,3 +1,5 @@
+import whatsappIcon from '../assets/img/whatsapp.svg';
+
 export default function Contacto({ formData, handleInputChange, handleFormSubmit, privacidad, setPrivacidad }) {
   const handleWhatsApp = () => {
     const numeroWhatsApp = '+543794011820';
@@ -18,7 +20,7 @@ export default function Contacto({ formData, handleInputChange, handleFormSubmit
                 <span className="dato-icon">📞</span>
                 <div>
                   <h4>Teléfono</h4>
-                  <p><a href="tel:+54379">Tu teléfono</a></p>
+                  <p><a href="">+543794011820</a></p>
                 </div>
               </div>
               <div className="dato">
@@ -43,10 +45,22 @@ export default function Contacto({ formData, handleInputChange, handleFormSubmit
                 marginTop: '20px',
                 backgroundColor: '#25D366',
                 color: 'white',
-                textDecoration: 'none'
+                textDecoration: 'none',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                gap: '8px'
               }}
             >
-              💬 Escribir por WhatsApp
+              <img 
+                src={whatsappIcon} 
+                alt="WhatsApp" 
+                style={{
+                  width: '20px',
+                  height: '20px'
+                }}
+              />
+              Escribir por WhatsApp
             </button>
           </div>
           <form className="formulario" onSubmit={handleFormSubmit}>
